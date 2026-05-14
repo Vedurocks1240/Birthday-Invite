@@ -13,12 +13,14 @@
         }
 
         html {
-            zoom: 1.10;
+            zoom: 1.05;
         }
 
         body {
             font-family: 'Playpen Sans', cursive;
-            background: #0d0d0d;
+            background: linear-gradient(135deg, #1a0a2e, #16213e, #0f3460, #533483);
+            background-size: 400% 400%;
+            animation: bgShift 8s ease infinite;
             min-height: 100vh;
             display: flex;
             justify-content: center;
@@ -26,68 +28,120 @@
             overflow-x: hidden;
         }
 
+        @keyframes bgShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
         .card {
-            background: #141414;
+            background: linear-gradient(145deg, #1e1e2f 0%, #2d1b4e 50%, #1e1e2f 100%);
             border-radius: 32px;
             padding: 48px 36px;
             max-width: 420px;
             width: 90%;
             text-align: center;
             position: relative;
-            box-shadow: 0 0 60px rgba(0, 200, 255, 0.08);
-            border: 1px solid rgba(255,255,255,0.04);
+            box-shadow: 0 0 80px rgba(255, 107, 107, 0.15), 0 0 80px rgba(0, 200, 255, 0.1), 0 0 80px rgba(255, 217, 61, 0.1);
+            border: 3px solid transparent;
+            background-clip: padding-box;
+            overflow: hidden;
         }
 
         .card::before {
             content: '';
             position: absolute;
-            top: -2px; left: -2px; right: -2px; bottom: -2px;
-            border-radius: 34px;
-            background: linear-gradient(135deg, #00c8ff, #ff6b6b, #ffd93d, #6bcb77);
+            top: -3px; left: -3px; right: -3px; bottom: -3px;
+            border-radius: 35px;
+            background: linear-gradient(135deg, #ff6b6b, #ffd93d, #6bcb77, #00c8ff, #ff6b6b, #ffd93d);
+            background-size: 300% 300%;
+            animation: rainbowBorder 3s linear infinite;
             z-index: -1;
-            opacity: 0.25;
         }
 
-        .photo-frame {
-            width: 160px;
-            height: 160px;
+        @keyframes rainbowBorder {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .card-decoration {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            pointer-events: none;
+            overflow: hidden;
+            border-radius: 32px;
+        }
+
+        .deco-circle {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.15;
+        }
+        .dc1 { width: 80px; height: 80px; background: #ff6b6b; top: 10%; left: -20px; }
+        .dc2 { width: 60px; height: 60px; background: #ffd93d; top: 20%; right: -10px; }
+        .dc3 { width: 100px; height: 100px; background: #00c8ff; bottom: 15%; left: -30px; }
+        .dc4 { width: 70px; height: 70px; background: #6bcb77; bottom: 25%; right: -15px; }
+        .dc5 { width: 50px; height: 50px; background: #ff6b6b; top: 50%; left: 5%; }
+        .dc6 { width: 90px; height: 90px; background: #ffd93d; top: 60%; right: 0%; }
+
+        .avatar {
+            width: 140px;
+            height: 140px;
             border-radius: 50%;
             margin: 0 auto 20px;
-            border: 4px solid rgba(255,255,255,0.15);
             display: flex;
             align-items: center;
             justify-content: center;
             position: relative;
-            background: #1a1a1a;
-            overflow: hidden;
+            background: linear-gradient(135deg, #ff3131, #ff914d, #ffd93d, #7ed957, #00c8ff);
+            background-size: 300% 300%;
+            animation: avatarGlow 2s ease infinite, bounce 2s ease-in-out infinite;
+            padding: 5px;
         }
 
-        .photo-frame img {
+        @keyframes avatarGlow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .avatar-inner {
             width: 100%;
             height: 100%;
-            object-fit: cover;
             border-radius: 50%;
+            background: #1a1a2e;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 64px;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
         }
 
         .name {
             font-family: 'Tilt Neon', cursive;
-            font-size: 1.8rem;
+            font-size: 2rem;
             font-weight: 400;
             margin-bottom: 4px;
             letter-spacing: 1px;
-            background: linear-gradient(90deg, #ff3131, #ff914d);
+            background: linear-gradient(90deg, #ff3131, #ff914d, #ffd93d);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            text-shadow: 0 0 30px rgba(255, 49, 49, 0.3);
         }
 
         h1 {
             font-family: 'Tilt Neon', cursive;
-            font-size: 1.5rem;
+            font-size: 1.6rem;
             font-weight: 400;
             margin-bottom: 6px;
             letter-spacing: 1px;
-            background: linear-gradient(90deg, #004aad, #5de0e6);
+            background: linear-gradient(90deg, #004aad, #5de0e6, #7ed957);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -95,30 +149,37 @@
 
         .age {
             font-family: 'Tilt Neon', cursive;
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             font-weight: 400;
-            margin-bottom: 32px;
+            margin-bottom: 28px;
             letter-spacing: 2px;
             text-transform: uppercase;
-            background: linear-gradient(90deg, #7ed957, #0097b2);
+            background: linear-gradient(90deg, #7ed957, #0097b2, #004aad);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
 
         .divider {
-            width: 60px;
-            height: 3px;
-            background: linear-gradient(90deg, #ff6b6b, #ffd93d, #6bcb77, #00c8ff);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, #ff6b6b, #ffd93d, #6bcb77, #00c8ff, #ff6b6b);
+            background-size: 200% 100%;
+            animation: dividerSlide 2s linear infinite;
             border-radius: 2px;
-            margin: 0 auto 32px;
+            margin: 0 auto 28px;
+        }
+
+        @keyframes dividerSlide {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 200% 50%; }
         }
 
         .details {
             display: flex;
             flex-direction: column;
-            gap: 18px;
-            margin-bottom: 36px;
+            gap: 16px;
+            margin-bottom: 28px;
         }
 
         .detail-item {
@@ -128,34 +189,38 @@
             gap: 12px;
             font-size: 1.05rem;
             font-weight: 400;
+            background: rgba(255,255,255,0.03);
+            padding: 12px 16px;
+            border-radius: 16px;
+            border: 1px solid rgba(255,255,255,0.06);
         }
 
         .detail-item span {
             font-family: 'Playpen Sans', cursive;
-            background: linear-gradient(90deg, #000000, #ffffff);
+            background: linear-gradient(90deg, #e0e0e0, #ffffff, #e0e0e0);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
 
         .detail-item .icon {
-            width: 36px;
-            height: 36px;
-            border-radius: 10px;
+            width: 38px;
+            height: 38px;
+            border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 16px;
+            font-size: 18px;
             flex-shrink: 0;
         }
 
-        .icon-date { background: rgba(255, 107, 107, 0.15); }
-        .icon-time { background: rgba(0, 200, 255, 0.15); }
-        .icon-location { background: rgba(107, 203, 119, 0.15); }
+        .icon-date { background: linear-gradient(135deg, #ff6b6b, #ff914d); box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3); }
+        .icon-time { background: linear-gradient(135deg, #00c8ff, #5de0e6); box-shadow: 0 4px 15px rgba(0, 200, 255, 0.3); }
+        .icon-location { background: linear-gradient(135deg, #6bcb77, #7ed957); box-shadow: 0 4px 15px rgba(107, 203, 119, 0.3); }
 
         .venue-link {
             font-family: 'Playpen Sans', cursive;
-            background: linear-gradient(90deg, #629941, #005cf8);
+            background: linear-gradient(90deg, #629941, #005cf8, #00c8ff);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -165,6 +230,48 @@
         }
         .venue-link:hover {
             opacity: 0.8;
+        }
+
+        .footer-fun {
+            font-family: 'Playpen Sans', cursive;
+            font-size: 1.3rem;
+            margin-top: 12px;
+            animation: wiggle 1.5s ease-in-out infinite;
+        }
+
+        .footer-fun span {
+            background: linear-gradient(90deg, #ff3131, #ff914d, #ffd93d, #7ed957, #00c8ff, #004aad);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        @keyframes wiggle {
+            0%, 100% { transform: rotate(-3deg); }
+            50% { transform: rotate(3deg); }
+        }
+
+        .stars {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+        .star {
+            position: absolute;
+            font-size: 20px;
+            animation: starTwinkle 1.5s ease-in-out infinite;
+        }
+        .star1 { top: 8%; left: 8%; animation-delay: 0s; }
+        .star2 { top: 12%; right: 10%; animation-delay: 0.3s; font-size: 16px; }
+        .star3 { top: 35%; left: 5%; animation-delay: 0.6s; font-size: 14px; }
+        .star4 { top: 40%; right: 8%; animation-delay: 0.9s; }
+        .star5 { bottom: 20%; left: 10%; animation-delay: 1.2s; font-size: 18px; }
+        .star6 { bottom: 25%; right: 12%; animation-delay: 0.4s; font-size: 15px; }
+
+        @keyframes starTwinkle {
+            0%, 100% { opacity: 0.3; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.3); }
         }
 
         /* Background Roblox Images */
@@ -178,18 +285,19 @@
 
         .block {
             position: absolute;
-            border-radius: 12px;
-            opacity: 0.08;
+            border-radius: 16px;
+            opacity: 0.12;
             object-fit: cover;
+            border: 2px solid rgba(255,255,255,0.1);
         }
 
-        .b1 { width: 90px; height: 90px; top: 8%; left: 5%; transform: rotate(12deg); }
-        .b2 { width: 70px; height: 70px; top: 22%; right: 8%; transform: rotate(-8deg); }
-        .b3 { width: 100px; height: 100px; bottom: 18%; left: 10%; transform: rotate(20deg); }
-        .b4 { width: 80px; height: 80px; bottom: 32%; right: 5%; transform: rotate(-15deg); }
-        .b5 { width: 65px; height: 65px; top: 55%; left: 3%; transform: rotate(5deg); }
-        .b6 { width: 85px; height: 85px; top: 6%; right: 22%; transform: rotate(-22deg); }
-        .b7 { width: 75px; height: 75px; bottom: 8%; right: 18%; transform: rotate(18deg); }
+        .b1 { width: 100px; height: 100px; top: 5%; left: 3%; transform: rotate(12deg); }
+        .b2 { width: 80px; height: 80px; top: 20%; right: 5%; transform: rotate(-8deg); }
+        .b3 { width: 120px; height: 120px; bottom: 15%; left: 8%; transform: rotate(20deg); }
+        .b4 { width: 90px; height: 90px; bottom: 30%; right: 3%; transform: rotate(-15deg); }
+        .b5 { width: 75px; height: 75px; top: 50%; left: 2%; transform: rotate(5deg); }
+        .b6 { width: 95px; height: 95px; top: 5%; right: 20%; transform: rotate(-22deg); }
+        .b7 { width: 85px; height: 85px; bottom: 5%; right: 15%; transform: rotate(18deg); }
 
         /* Confetti */
         .confetti {
@@ -202,40 +310,40 @@
 
         .confetti-piece {
             position: absolute;
-            width: 10px;
-            height: 10px;
+            width: 12px;
+            height: 12px;
             border-radius: 2px;
-            opacity: 0.6;
-            animation: confettiFall 5s linear infinite;
+            opacity: 0.7;
+            animation: confettiFall 4s linear infinite;
         }
 
         @keyframes confettiFall {
             0% { transform: translateY(-10vh) rotate(0deg); opacity: 0; }
-            10% { opacity: 0.8; }
-            90% { opacity: 0.6; }
+            10% { opacity: 0.9; }
+            90% { opacity: 0.7; }
             100% { transform: translateY(110vh) rotate(720deg); opacity: 0; }
         }
 
-        .c1 { background: #ff6b6b; left: 10%; animation-delay: 0s; animation-duration: 4.5s; }
-        .c2 { background: #ffd93d; left: 20%; animation-delay: 0.5s; animation-duration: 5.2s; width: 8px; height: 8px; }
-        .c3 { background: #00c8ff; left: 30%; animation-delay: 1.2s; animation-duration: 4.8s; }
-        .c4 { background: #6bcb77; left: 40%; animation-delay: 0.3s; animation-duration: 5.5s; width: 12px; height: 6px; border-radius: 0; }
-        .c5 { background: #ff6b6b; left: 50%; animation-delay: 1.8s; animation-duration: 4.2s; }
-        .c6 { background: #ffd93d; left: 60%; animation-delay: 0.8s; animation-duration: 5s; width: 6px; height: 12px; border-radius: 0; }
-        .c7 { background: #00c8ff; left: 70%; animation-delay: 2.1s; animation-duration: 4.6s; }
-        .c8 { background: #6bcb77; left: 80%; animation-delay: 0.2s; animation-duration: 5.3s; }
-        .c9 { background: #ff6b6b; left: 90%; animation-delay: 1.5s; animation-duration: 4.9s; width: 8px; height: 8px; }
-        .c10 { background: #ffd93d; left: 15%; animation-delay: 2.8s; animation-duration: 5.1s; }
-        .c11 { background: #00c8ff; left: 25%; animation-delay: 3.2s; animation-duration: 4.4s; width: 12px; height: 6px; border-radius: 0; }
-        .c12 { background: #6bcb77; left: 35%; animation-delay: 1.0s; animation-duration: 5.6s; }
-        .c13 { background: #ff6b6b; left: 45%; animation-delay: 2.5s; animation-duration: 4.7s; width: 6px; height: 12px; border-radius: 0; }
-        .c14 { background: #ffd93d; left: 55%; animation-delay: 3.5s; animation-duration: 5.4s; }
-        .c15 { background: #00c8ff; left: 65%; animation-delay: 0.7s; animation-duration: 4.3s; width: 8px; height: 8px; }
-        .c16 { background: #6bcb77; left: 75%; animation-delay: 2.2s; animation-duration: 5s; }
-        .c17 { background: #ff6b6b; left: 85%; animation-delay: 1.3s; animation-duration: 4.8s; width: 12px; height: 6px; border-radius: 0; }
-        .c18 { background: #ffd93d; left: 5%; animation-delay: 3.8s; animation-duration: 5.2s; }
-        .c19 { background: #00c8ff; left: 95%; animation-delay: 0.4s; animation-duration: 4.6s; width: 6px; height: 12px; border-radius: 0; }
-        .c20 { background: #6bcb77; left: 50%; animation-delay: 4.2s; animation-duration: 5.5s; }
+        .c1 { background: #ff6b6b; left: 8%; animation-delay: 0s; animation-duration: 4s; }
+        .c2 { background: #ffd93d; left: 15%; animation-delay: 0.3s; animation-duration: 4.5s; width: 10px; height: 10px; }
+        .c3 { background: #00c8ff; left: 25%; animation-delay: 0.8s; animation-duration: 3.8s; }
+        .c4 { background: #6bcb77; left: 35%; animation-delay: 0.2s; animation-duration: 4.8s; width: 14px; height: 7px; border-radius: 0; }
+        .c5 { background: #ff6b6b; left: 45%; animation-delay: 1.2s; animation-duration: 3.5s; }
+        .c6 { background: #ffd93d; left: 55%; animation-delay: 0.5s; animation-duration: 4.2s; width: 7px; height: 14px; border-radius: 0; }
+        .c7 { background: #00c8ff; left: 65%; animation-delay: 1.5s; animation-duration: 3.9s; }
+        .c8 { background: #6bcb77; left: 75%; animation-delay: 0.1s; animation-duration: 4.6s; }
+        .c9 { background: #ff6b6b; left: 85%; animation-delay: 1.0s; animation-duration: 4.1s; width: 10px; height: 10px; }
+        .c10 { background: #ffd93d; left: 92%; animation-delay: 2.0s; animation-duration: 4.3s; }
+        .c11 { background: #00c8ff; left: 12%; animation-delay: 2.5s; animation-duration: 3.6s; width: 14px; height: 7px; border-radius: 0; }
+        .c12 { background: #6bcb77; left: 22%; animation-delay: 0.7s; animation-duration: 4.9s; }
+        .c13 { background: #ff6b6b; left: 38%; animation-delay: 1.8s; animation-duration: 3.7s; width: 7px; height: 14px; border-radius: 0; }
+        .c14 { background: #ffd93d; left: 48%; animation-delay: 2.8s; animation-duration: 4.4s; }
+        .c15 { background: #00c8ff; left: 58%; animation-delay: 0.4s; animation-duration: 3.4s; width: 10px; height: 10px; }
+        .c16 { background: #6bcb77; left: 68%; animation-delay: 1.6s; animation-duration: 4.0s; }
+        .c17 { background: #ff6b6b; left: 78%; animation-delay: 0.9s; animation-duration: 4.5s; width: 14px; height: 7px; border-radius: 0; }
+        .c18 { background: #ffd93d; left: 5%; animation-delay: 3.2s; animation-duration: 4.7s; }
+        .c19 { background: #00c8ff; left: 88%; animation-delay: 0.6s; animation-duration: 3.8s; width: 7px; height: 14px; border-radius: 0; }
+        .c20 { background: #6bcb77; left: 50%; animation-delay: 3.5s; animation-duration: 4.2s; }
 
         /* Fireworks */
         .fireworks {
@@ -263,8 +371,8 @@
 
         @keyframes fireworkBurst {
             0% { transform: scale(0); opacity: 1; }
-            50% { opacity: 0.8; }
-            100% { transform: scale(25); opacity: 0; }
+            50% { opacity: 0.9; }
+            100% { transform: scale(30); opacity: 0; }
         }
 
         @keyframes fireworkParticle {
@@ -274,79 +382,79 @@
 
         .fw-burst {
             position: absolute;
-            width: 6px;
-            height: 6px;
+            width: 8px;
+            height: 8px;
             border-radius: 50%;
             animation: fireworkBurst 2s ease-out infinite;
         }
 
         .fw-particle {
             position: absolute;
-            width: 4px;
-            height: 4px;
+            width: 5px;
+            height: 5px;
             border-radius: 50%;
             animation: fireworkParticle 2s ease-out infinite;
         }
 
         /* Firework 1 - Top Left */
-        .fw1 { top: 15%; left: 15%; }
+        .fw1 { top: 12%; left: 12%; }
         .fw1 .fw-burst { background: #ff6b6b; animation-delay: 0s; }
-        .fw1 .fw-particle:nth-child(1) { background: #ff6b6b; animation-delay: 0s; --tx: -40px; --ty: -30px; }
-        .fw1 .fw-particle:nth-child(2) { background: #ffd93d; animation-delay: 0s; --tx: 40px; --ty: -30px; }
-        .fw1 .fw-particle:nth-child(3) { background: #00c8ff; animation-delay: 0s; --tx: 0px; --ty: -50px; }
-        .fw1 .fw-particle:nth-child(4) { background: #6bcb77; animation-delay: 0s; --tx: -30px; --ty: 20px; }
-        .fw1 .fw-particle:nth-child(5) { background: #ff6b6b; animation-delay: 0s; --tx: 30px; --ty: 20px; }
-        .fw1 .fw-particle:nth-child(6) { background: #ffd93d; animation-delay: 0s; --tx: -50px; --ty: 0px; }
-        .fw1 .fw-particle:nth-child(7) { background: #00c8ff; animation-delay: 0s; --tx: 50px; --ty: 0px; }
-        .fw1 .fw-particle:nth-child(8) { background: #6bcb77; animation-delay: 0s; --tx: 0px; --ty: 40px; }
+        .fw1 .fw-particle:nth-child(1) { background: #ff6b6b; animation-delay: 0s; --tx: -50px; --ty: -40px; }
+        .fw1 .fw-particle:nth-child(2) { background: #ffd93d; animation-delay: 0s; --tx: 50px; --ty: -40px; }
+        .fw1 .fw-particle:nth-child(3) { background: #00c8ff; animation-delay: 0s; --tx: 0px; --ty: -60px; }
+        .fw1 .fw-particle:nth-child(4) { background: #6bcb77; animation-delay: 0s; --tx: -40px; --ty: 30px; }
+        .fw1 .fw-particle:nth-child(5) { background: #ff6b6b; animation-delay: 0s; --tx: 40px; --ty: 30px; }
+        .fw1 .fw-particle:nth-child(6) { background: #ffd93d; animation-delay: 0s; --tx: -60px; --ty: 0px; }
+        .fw1 .fw-particle:nth-child(7) { background: #00c8ff; animation-delay: 0s; --tx: 60px; --ty: 0px; }
+        .fw1 .fw-particle:nth-child(8) { background: #6bcb77; animation-delay: 0s; --tx: 0px; --ty: 50px; }
 
         /* Firework 2 - Top Right */
-        .fw2 { top: 10%; right: 20%; }
+        .fw2 { top: 8%; right: 18%; }
         .fw2 .fw-burst { background: #00c8ff; animation-delay: 1s; }
-        .fw2 .fw-particle:nth-child(1) { background: #00c8ff; animation-delay: 1s; --tx: -35px; --ty: -25px; }
-        .fw2 .fw-particle:nth-child(2) { background: #ffd93d; animation-delay: 1s; --tx: 35px; --ty: -25px; }
-        .fw2 .fw-particle:nth-child(3) { background: #ff6b6b; animation-delay: 1s; --tx: 0px; --ty: -45px; }
-        .fw2 .fw-particle:nth-child(4) { background: #6bcb77; animation-delay: 1s; --tx: -25px; --ty: 25px; }
-        .fw2 .fw-particle:nth-child(5) { background: #00c8ff; animation-delay: 1s; --tx: 25px; --ty: 25px; }
-        .fw2 .fw-particle:nth-child(6) { background: #ffd93d; animation-delay: 1s; --tx: -45px; --ty: 0px; }
-        .fw2 .fw-particle:nth-child(7) { background: #ff6b6b; animation-delay: 1s; --tx: 45px; --ty: 0px; }
-        .fw2 .fw-particle:nth-child(8) { background: #6bcb77; animation-delay: 1s; --tx: 0px; --ty: 35px; }
+        .fw2 .fw-particle:nth-child(1) { background: #00c8ff; animation-delay: 1s; --tx: -45px; --ty: -35px; }
+        .fw2 .fw-particle:nth-child(2) { background: #ffd93d; animation-delay: 1s; --tx: 45px; --ty: -35px; }
+        .fw2 .fw-particle:nth-child(3) { background: #ff6b6b; animation-delay: 1s; --tx: 0px; --ty: -55px; }
+        .fw2 .fw-particle:nth-child(4) { background: #6bcb77; animation-delay: 1s; --tx: -35px; --ty: 35px; }
+        .fw2 .fw-particle:nth-child(5) { background: #00c8ff; animation-delay: 1s; --tx: 35px; --ty: 35px; }
+        .fw2 .fw-particle:nth-child(6) { background: #ffd93d; animation-delay: 1s; --tx: -55px; --ty: 0px; }
+        .fw2 .fw-particle:nth-child(7) { background: #ff6b6b; animation-delay: 1s; --tx: 55px; --ty: 0px; }
+        .fw2 .fw-particle:nth-child(8) { background: #6bcb77; animation-delay: 1s; --tx: 0px; --ty: 45px; }
 
         /* Firework 3 - Bottom Left */
-        .fw3 { bottom: 20%; left: 20%; }
+        .fw3 { bottom: 18%; left: 18%; }
         .fw3 .fw-burst { background: #ffd93d; animation-delay: 2s; }
-        .fw3 .fw-particle:nth-child(1) { background: #ffd93d; animation-delay: 2s; --tx: -45px; --ty: -35px; }
-        .fw3 .fw-particle:nth-child(2) { background: #ff6b6b; animation-delay: 2s; --tx: 45px; --ty: -35px; }
-        .fw3 .fw-particle:nth-child(3) { background: #6bcb77; animation-delay: 2s; --tx: 0px; --ty: -55px; }
-        .fw3 .fw-particle:nth-child(4) { background: #00c8ff; animation-delay: 2s; --tx: -35px; --ty: 25px; }
-        .fw3 .fw-particle:nth-child(5) { background: #ffd93d; animation-delay: 2s; --tx: 35px; --ty: 25px; }
-        .fw3 .fw-particle:nth-child(6) { background: #ff6b6b; animation-delay: 2s; --tx: -55px; --ty: 0px; }
-        .fw3 .fw-particle:nth-child(7) { background: #6bcb77; animation-delay: 2s; --tx: 55px; --ty: 0px; }
-        .fw3 .fw-particle:nth-child(8) { background: #00c8ff; animation-delay: 2s; --tx: 0px; --ty: 45px; }
+        .fw3 .fw-particle:nth-child(1) { background: #ffd93d; animation-delay: 2s; --tx: -55px; --ty: -45px; }
+        .fw3 .fw-particle:nth-child(2) { background: #ff6b6b; animation-delay: 2s; --tx: 55px; --ty: -45px; }
+        .fw3 .fw-particle:nth-child(3) { background: #6bcb77; animation-delay: 2s; --tx: 0px; --ty: -65px; }
+        .fw3 .fw-particle:nth-child(4) { background: #00c8ff; animation-delay: 2s; --tx: -45px; --ty: 35px; }
+        .fw3 .fw-particle:nth-child(5) { background: #ffd93d; animation-delay: 2s; --tx: 45px; --ty: 35px; }
+        .fw3 .fw-particle:nth-child(6) { background: #ff6b6b; animation-delay: 2s; --tx: -65px; --ty: 0px; }
+        .fw3 .fw-particle:nth-child(7) { background: #6bcb77; animation-delay: 2s; --tx: 65px; --ty: 0px; }
+        .fw3 .fw-particle:nth-child(8) { background: #00c8ff; animation-delay: 2s; --tx: 0px; --ty: 55px; }
 
         /* Firework 4 - Bottom Right */
-        .fw4 { bottom: 25%; right: 15%; }
+        .fw4 { bottom: 22%; right: 12%; }
         .fw4 .fw-burst { background: #6bcb77; animation-delay: 0.5s; }
-        .fw4 .fw-particle:nth-child(1) { background: #6bcb77; animation-delay: 0.5s; --tx: -30px; --ty: -20px; }
-        .fw4 .fw-particle:nth-child(2) { background: #00c8ff; animation-delay: 0.5s; --tx: 30px; --ty: -20px; }
-        .fw4 .fw-particle:nth-child(3) { background: #ffd93d; animation-delay: 0.5s; --tx: 0px; --ty: -40px; }
-        .fw4 .fw-particle:nth-child(4) { background: #ff6b6b; animation-delay: 0.5s; --tx: -20px; --ty: 30px; }
-        .fw4 .fw-particle:nth-child(5) { background: #6bcb77; animation-delay: 0.5s; --tx: 20px; --ty: 30px; }
-        .fw4 .fw-particle:nth-child(6) { background: #00c8ff; animation-delay: 0.5s; --tx: -40px; --ty: 0px; }
-        .fw4 .fw-particle:nth-child(7) { background: #ffd93d; animation-delay: 0.5s; --tx: 40px; --ty: 0px; }
-        .fw4 .fw-particle:nth-child(8) { background: #ff6b6b; animation-delay: 0.5s; --tx: 0px; --ty: 35px; }
+        .fw4 .fw-particle:nth-child(1) { background: #6bcb77; animation-delay: 0.5s; --tx: -40px; --ty: -30px; }
+        .fw4 .fw-particle:nth-child(2) { background: #00c8ff; animation-delay: 0.5s; --tx: 40px; --ty: -30px; }
+        .fw4 .fw-particle:nth-child(3) { background: #ffd93d; animation-delay: 0.5s; --tx: 0px; --ty: -50px; }
+        .fw4 .fw-particle:nth-child(4) { background: #ff6b6b; animation-delay: 0.5s; --tx: -30px; --ty: 40px; }
+        .fw4 .fw-particle:nth-child(5) { background: #6bcb77; animation-delay: 0.5s; --tx: 30px; --ty: 40px; }
+        .fw4 .fw-particle:nth-child(6) { background: #00c8ff; animation-delay: 0.5s; --tx: -50px; --ty: 0px; }
+        .fw4 .fw-particle:nth-child(7) { background: #ffd93d; animation-delay: 0.5s; --tx: 50px; --ty: 0px; }
+        .fw4 .fw-particle:nth-child(8) { background: #ff6b6b; animation-delay: 0.5s; --tx: 0px; --ty: 45px; }
 
         /* Firework 5 - Center Top */
-        .fw5 { top: 5%; left: 50%; }
+        .fw5 { top: 3%; left: 50%; }
         .fw5 .fw-burst { background: #ff6b6b; animation-delay: 1.5s; }
-        .fw5 .fw-particle:nth-child(1) { background: #ff6b6b; animation-delay: 1.5s; --tx: -38px; --ty: -28px; }
-        .fw5 .fw-particle:nth-child(2) { background: #ffd93d; animation-delay: 1.5s; --tx: 38px; --ty: -28px; }
-        .fw5 .fw-particle:nth-child(3) { background: #00c8ff; animation-delay: 1.5s; --tx: 0px; --ty: -48px; }
-        .fw5 .fw-particle:nth-child(4) { background: #6bcb77; animation-delay: 1.5s; --tx: -28px; --ty: 22px; }
-        .fw5 .fw-particle:nth-child(5) { background: #ff6b6b; animation-delay: 1.5s; --tx: 28px; --ty: 22px; }
-        .fw5 .fw-particle:nth-child(6) { background: #ffd93d; animation-delay: 1.5s; --tx: -48px; --ty: 0px; }
-        .fw5 .fw-particle:nth-child(7) { background: #00c8ff; animation-delay: 1.5s; --tx: 48px; --ty: 0px; }
-        .fw5 .fw-particle:nth-child(8) { background: #6bcb77; animation-delay: 1.5s; --tx: 0px; --ty: 38px; }
+        .fw5 .fw-particle:nth-child(1) { background: #ff6b6b; animation-delay: 1.5s; --tx: -48px; --ty: -38px; }
+        .fw5 .fw-particle:nth-child(2) { background: #ffd93d; animation-delay: 1.5s; --tx: 48px; --ty: -38px; }
+        .fw5 .fw-particle:nth-child(3) { background: #00c8ff; animation-delay: 1.5s; --tx: 0px; --ty: -58px; }
+        .fw5 .fw-particle:nth-child(4) { background: #6bcb77; animation-delay: 1.5s; --tx: -38px; --ty: 28px; }
+        .fw5 .fw-particle:nth-child(5) { background: #ff6b6b; animation-delay: 1.5s; --tx: 38px; --ty: 28px; }
+        .fw5 .fw-particle:nth-child(6) { background: #ffd93d; animation-delay: 1.5s; --tx: -58px; --ty: 0px; }
+        .fw5 .fw-particle:nth-child(7) { background: #00c8ff; animation-delay: 1.5s; --tx: 58px; --ty: 0px; }
+        .fw5 .fw-particle:nth-child(8) { background: #6bcb77; animation-delay: 1.5s; --tx: 0px; --ty: 48px; }
 
         .fw-particle {
             animation-name: fireworkParticle;
@@ -359,15 +467,17 @@
 
         @media (max-width: 480px) {
             .card { padding: 36px 24px; }
-            .name { font-size: 1.5rem; }
+            .name { font-size: 1.6rem; }
             h1 { font-size: 1.3rem; }
-            .b1 { width: 60px; height: 60px; }
-            .b2 { width: 50px; height: 50px; }
-            .b3 { width: 70px; height: 70px; }
-            .b4 { width: 55px; height: 55px; }
-            .b5 { width: 45px; height: 45px; }
-            .b6 { width: 60px; height: 60px; }
-            .b7 { width: 55px; height: 55px; }
+            .avatar { width: 120px; height: 120px; }
+            .avatar-inner { font-size: 52px; }
+            .b1 { width: 70px; height: 70px; }
+            .b2 { width: 60px; height: 60px; }
+            .b3 { width: 90px; height: 90px; }
+            .b4 { width: 70px; height: 70px; }
+            .b5 { width: 55px; height: 55px; }
+            .b6 { width: 75px; height: 75px; }
+            .b7 { width: 65px; height: 65px; }
         }
     </style>
 <base target="_blank">
@@ -441,8 +551,25 @@
     </div>
 
     <div class="card">
-        <div class="photo-frame">
-            <img src="https://i.ibb.co/jP2nrqCm/IMG-20260509-111654154.jpg" alt="Sparsh">
+        <div class="card-decoration">
+            <div class="deco-circle dc1"></div>
+            <div class="deco-circle dc2"></div>
+            <div class="deco-circle dc3"></div>
+            <div class="deco-circle dc4"></div>
+            <div class="deco-circle dc5"></div>
+            <div class="deco-circle dc6"></div>
+            <div class="stars">
+                <span class="star star1">✨</span>
+                <span class="star star2">⭐</span>
+                <span class="star star3">✨</span>
+                <span class="star star4">⭐</span>
+                <span class="star star5">✨</span>
+                <span class="star star6">⭐</span>
+            </div>
+        </div>
+
+        <div class="avatar">
+            <div class="avatar-inner">🎂</div>
         </div>
 
         <div class="name">Sparsh Jain</div>
@@ -465,6 +592,8 @@
                 <a href="https://maps.app.goo.gl/2NAn5wTtvy15wEML6" target="_blank" class="venue-link">Funky Monkey's, Pley Centre 3, Nexus Mall</a>
             </div>
         </div>
+
+        <div class="footer-fun"><span>🎉 Let's Party! 🎮</span></div>
     </div>
 
     <script>
