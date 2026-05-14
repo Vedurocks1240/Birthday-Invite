@@ -13,7 +13,7 @@
         }
 
         html {
-            zoom: 1.05;
+            zoom: 1.25;
         }
 
         body {
@@ -251,6 +251,65 @@
             50% { transform: rotate(3deg); }
         }
 
+        /* Cartoon Robots & Games floating around */
+        .toons {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            pointer-events: none;
+            overflow: hidden;
+            border-radius: 32px;
+            z-index: 2;
+        }
+
+        .toon {
+            position: absolute;
+            font-size: 28px;
+        }
+
+        .toon1 { top: 8%; left: 8%; animation: float1 3s ease-in-out infinite; }
+        .toon2 { top: 12%; right: 10%; animation: float2 2.5s ease-in-out infinite; animation-delay: 0.5s; }
+        .toon3 { bottom: 18%; left: 6%; animation: float1 3.5s ease-in-out infinite; animation-delay: 1s; }
+        .toon4 { bottom: 22%; right: 8%; animation: float2 2.8s ease-in-out infinite; animation-delay: 0.3s; }
+        .toon5 { top: 45%; left: 3%; animation: spin 4s linear infinite; }
+        .toon6 { top: 48%; right: 4%; animation: spin 4s linear infinite reverse; animation-delay: 1s; }
+        .toon7 { top: 70%; left: 8%; animation: float1 3s ease-in-out infinite; animation-delay: 1.5s; }
+        .toon8 { top: 75%; right: 10%; animation: float2 2.5s ease-in-out infinite; animation-delay: 0.8s; }
+
+        @keyframes float1 {
+            0%, 100% { transform: translateY(0) rotate(-5deg); }
+            50% { transform: translateY(-12px) rotate(5deg); }
+        }
+        @keyframes float2 {
+            0%, 100% { transform: translateY(0) rotate(5deg); }
+            50% { transform: translateY(-10px) rotate(-5deg); }
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Floating toons outside card */
+        .outer-toons {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            pointer-events: none;
+            z-index: 10;
+            overflow: hidden;
+        }
+
+        .ot {
+            position: absolute;
+            font-size: 36px;
+            opacity: 0.7;
+        }
+
+        .ot1 { top: 5%; left: 5%; animation: float1 4s ease-in-out infinite; }
+        .ot2 { top: 15%; right: 3%; animation: float2 3.5s ease-in-out infinite; animation-delay: 0.7s; }
+        .ot3 { bottom: 10%; left: 8%; animation: float1 3s ease-in-out infinite; animation-delay: 1.2s; }
+        .ot4 { bottom: 15%; right: 5%; animation: float2 4s ease-in-out infinite; animation-delay: 0.4s; }
+        .ot5 { top: 35%; left: 2%; animation: spin 5s linear infinite; }
+        .ot6 { top: 40%; right: 2%; animation: spin 5s linear infinite reverse; animation-delay: 1.5s; }
+
         .stars {
             position: absolute;
             width: 100%;
@@ -471,6 +530,8 @@
             h1 { font-size: 1.3rem; }
             .avatar { width: 120px; height: 120px; }
             .avatar-inner { font-size: 52px; }
+            .toon { font-size: 22px; }
+            .ot { font-size: 28px; }
             .b1 { width: 70px; height: 70px; }
             .b2 { width: 60px; height: 60px; }
             .b3 { width: 90px; height: 90px; }
@@ -550,6 +611,16 @@
         </div>
     </div>
 
+    <!-- Outer floating toons -->
+    <div class="outer-toons">
+        <div class="ot ot1">🤖</div>
+        <div class="ot ot2">🎮</div>
+        <div class="ot ot3">👾</div>
+        <div class="ot ot4">🕹️</div>
+        <div class="ot ot5">🚀</div>
+        <div class="ot ot6">🎯</div>
+    </div>
+
     <div class="card">
         <div class="card-decoration">
             <div class="deco-circle dc1"></div>
@@ -566,6 +637,18 @@
                 <span class="star star5">✨</span>
                 <span class="star star6">⭐</span>
             </div>
+        </div>
+
+        <!-- Inner floating toons -->
+        <div class="toons">
+            <div class="toon toon1">🤖</div>
+            <div class="toon toon2">🎮</div>
+            <div class="toon toon3">👾</div>
+            <div class="toon toon4">🕹️</div>
+            <div class="toon toon5">🚀</div>
+            <div class="toon toon6">🎯</div>
+            <div class="toon toon7">🧸</div>
+            <div class="toon toon8">🎲</div>
         </div>
 
         <div class="avatar">
