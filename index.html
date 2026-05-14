@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sparsh's 6th Birthday Invite</title>
-    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Tilt+Neon&family=Playpen+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -12,8 +12,12 @@
             box-sizing: border-box;
         }
 
+        html {
+            zoom: 1.25;
+        }
+
         body {
-            font-family: 'Fredoka', sans-serif;
+            font-family: 'Playpen Sans', cursive;
             background: #0d0d0d;
             min-height: 100vh;
             display: flex;
@@ -66,28 +70,40 @@
         }
 
         .name {
-            font-size: 1.6rem;
-            font-weight: 700;
-            color: #fff;
+            font-family: 'Tilt Neon', cursive;
+            font-size: 1.8rem;
+            font-weight: 400;
             margin-bottom: 4px;
             letter-spacing: 1px;
+            background: linear-gradient(90deg, #ff3131, #ff914d);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         h1 {
-            font-size: 1.4rem;
-            font-weight: 600;
-            color: #ffd93d;
+            font-family: 'Tilt Neon', cursive;
+            font-size: 1.5rem;
+            font-weight: 400;
             margin-bottom: 6px;
             letter-spacing: 1px;
+            background: linear-gradient(90deg, #004aad, #5de0e6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .age {
+            font-family: 'Tilt Neon', cursive;
             font-size: 1.1rem;
-            color: #00c8ff;
             font-weight: 400;
             margin-bottom: 32px;
             letter-spacing: 2px;
             text-transform: uppercase;
+            background: linear-gradient(90deg, #7ed957, #0097b2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .divider {
@@ -110,9 +126,16 @@
             align-items: center;
             justify-content: center;
             gap: 12px;
-            color: rgba(255,255,255,0.7);
             font-size: 1.05rem;
-            font-weight: 300;
+            font-weight: 400;
+        }
+
+        .detail-item span {
+            font-family: 'Playpen Sans', cursive;
+            background: linear-gradient(90deg, #000000, #ffffff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .detail-item .icon {
@@ -126,19 +149,22 @@
             flex-shrink: 0;
         }
 
-        .icon-date { background: rgba(255, 107, 107, 0.15); color: #ff6b6b; }
-        .icon-time { background: rgba(0, 200, 255, 0.15); color: #00c8ff; }
-        .icon-location { background: rgba(107, 203, 119, 0.15); color: #6bcb77; }
+        .icon-date { background: rgba(255, 107, 107, 0.15); }
+        .icon-time { background: rgba(0, 200, 255, 0.15); }
+        .icon-location { background: rgba(107, 203, 119, 0.15); }
 
         .venue-link {
-            color: #6bcb77;
+            font-family: 'Playpen Sans', cursive;
+            background: linear-gradient(90deg, #629941, #005cf8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
             text-decoration: none;
-            font-weight: 400;
-            transition: color 0.2s;
+            font-weight: 600;
+            transition: opacity 0.2s;
         }
         .venue-link:hover {
-            color: #ffd93d;
-            text-decoration: underline;
+            opacity: 0.8;
         }
 
         /* Background Roblox Images */
@@ -333,8 +359,8 @@
 
         @media (max-width: 480px) {
             .card { padding: 36px 24px; }
-            .name { font-size: 1.4rem; }
-            h1 { font-size: 1.2rem; }
+            .name { font-size: 1.5rem; }
+            h1 { font-size: 1.3rem; }
             .b1 { width: 60px; height: 60px; }
             .b2 { width: 50px; height: 50px; }
             .b3 { width: 70px; height: 70px; }
@@ -440,6 +466,19 @@
             </div>
         </div>
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var elem = document.documentElement;
+            if (elem.requestFullscreen) {
+                elem.requestFullscreen();
+            } else if (elem.webkitRequestFullscreen) {
+                elem.webkitRequestFullscreen();
+            } else if (elem.msRequestFullscreen) {
+                elem.msRequestFullscreen();
+            }
+        });
+    </script>
 
 </body>
 </html>
